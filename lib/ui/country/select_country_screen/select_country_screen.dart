@@ -7,6 +7,7 @@ import 'package:appassesment/utils/font_res.dart';
 import 'package:appassesment/utils/image_res.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SelectCountryScreen extends StatelessWidget {
@@ -38,8 +39,8 @@ class SelectCountryScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       SizedBox(
-                        height: 90,
-                        width:  90,
+                        height: 100,
+                        width:  100,
                         child: Image(
                           image: AssetImage(
                               ImageRes.imgCountry
@@ -50,12 +51,21 @@ class SelectCountryScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
-                            "Canada",
-                            style: TextStyle(
-                                color: ColorRes.white,
-                                fontSize: 18,
-                                fontFamily: FontRes.regular
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 15
+                            ),
+                            child: Flexible(
+                              child: Text(
+                                "New Zealand",
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                    color: ColorRes.white,
+                                    fontSize: 18,
+                                    fontFamily: FontRes.regular
+                                ),
+                              ),
                             ),
                           ),
                         ],
@@ -67,7 +77,7 @@ class SelectCountryScreen extends StatelessWidget {
           ),
           SelectCountryBottomView(
             controller: controller,
-            onProceedTap: () {  },
+            onProceedTap: () => controller.onProceedTap(),
           )
         ],
       ),
