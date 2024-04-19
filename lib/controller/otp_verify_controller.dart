@@ -1,12 +1,15 @@
 
 
 import 'dart:async';
+import 'dart:convert';
 import 'dart:ffi';
 
 import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/services/api_service.dart';
+import 'package:appassesment/services/pref_service.dart';
 import 'package:appassesment/services/response/general_response.dart';
 import 'package:appassesment/ui/country/select_country_screen/select_country_screen.dart';
+import 'package:appassesment/utils/const_res.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 import 'package:dio/dio.dart';
@@ -20,6 +23,7 @@ class OtpVerifyController extends GetxController {
 
   /*--- Services ---*/
   ApiService apiService = ApiService.instance;
+  PrefService prefService = PrefService.instance;
 
   /*--- Variable and Lists ---*/
   CountryModel get countryModel => Get.arguments[1];
@@ -32,6 +36,12 @@ class OtpVerifyController extends GetxController {
   Timer? timer;
   int remainingSeconds = 30;
 
+
+  @override
+  void onInit() async {
+    await prefService.init();
+    super.onInit();
+  }
 
   // UI event methods and action methods declare here
   void onBackTap(){
@@ -111,8 +121,10 @@ class OtpVerifyController extends GetxController {
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
         CustomUiUtils.showSnackbar(responseModel.message?? "");
-        Get.to(() => const SelectCountryScreen(),
-            /*arguments: [loginType, countryModel]*/);
+        var userMap = jsonEncode(responseModel.data);
+        await prefService.saveString(key: ConstRes.user, value: userMap);
+        await prefService.saveBool(key: ConstRes.isLogin, value: true);
+        Get.to(() => const SelectCountryScreen());
       }
       setLoading(false);
 
@@ -137,6 +149,7 @@ class OtpVerifyController extends GetxController {
     } catch (ex) {
       CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
+      print("exception ::: $ex");
     }
   }
 

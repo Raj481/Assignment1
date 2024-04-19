@@ -26,53 +26,77 @@ class SelectCountryScreen extends StatelessWidget {
             onBackTap: () {  },
           ),
           Flexible(
-            child: GridView.builder(
-              physics: const BouncingScrollPhysics(),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2, // number of items in each row
-                  mainAxisSpacing: 1.0, // spacing between rows
-                  crossAxisSpacing: 1.0, // spacing between columns
-                ),
-                itemCount: 20,
-                itemBuilder: (_, index){
-                  return Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        height: 100,
-                        width:  100,
-                        child: Image(
-                          image: AssetImage(
-                              ImageRes.imgCountry
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 8,),
-                      Row(
+            child: GetBuilder(
+              init: controller,
+              builder: (_) {
+                return GridView.builder(
+                    physics: const BouncingScrollPhysics(),
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2, // number of items in each row
+                      mainAxisSpacing: 8.0, // spacing between rows
+                      crossAxisSpacing: 8.0, // spacing between columns
+                    ),
+                    itemCount: controller.getCountries.length,
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 25,
+                        vertical: 25
+                    ),
+                    itemBuilder: (_, index){
+                      return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 15
-                            ),
-                            child: Flexible(
-                              child: Text(
-                                "New Zealand",
-                                maxLines: 2,
-                                overflow: TextOverflow.ellipsis,
-                                style: TextStyle(
-                                    color: ColorRes.white,
-                                    fontSize: 18,
-                                    fontFamily: FontRes.regular
+
+                          if(controller.getCountries.elementAt(index).image!.trim().isNotEmpty)
+                            SizedBox(
+                              height: 90,
+                              width:  90,
+                              child: Container(
+                                foregroundDecoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  backgroundBlendMode: BlendMode.saturation,
+                                ),
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  image: DecorationImage(
+                                    image: NetworkImage(
+                                        controller.getCountries.elementAt(index).image!
+                                    )
+                                  )
                                 ),
                               ),
                             ),
+                          if(controller.getCountries.elementAt(index).image!.trim().isEmpty)
+                            const SizedBox(
+                              height: 90,
+                              width:  90,
+                            ),
+                          const SizedBox(height: 8,),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 30),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    controller.getCountries.elementAt(index).name ?? "",
+                                    maxLines: 2,
+                                    textAlign: TextAlign.center,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: TextStyle(
+                                        color: ColorRes.white,
+                                        fontSize: 17,
+                                        fontFamily: FontRes.regular
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
-                      ),
-                    ],
-                  );
-                }
+                      );
+                    }
+                );
+              },
             ),
           ),
           SelectCountryBottomView(

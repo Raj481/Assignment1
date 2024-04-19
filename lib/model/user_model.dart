@@ -1,12 +1,12 @@
 import 'dart:convert';
 
 class UserModel {
-  String? profileStatus;
-  String? role;
-  String? phone;
+  dynamic profileStatus;
+  dynamic role;
+  dynamic phone;
   dynamic phoneVerifiedAt;
-  String? accessToken;
-  String? tokenType;
+  dynamic accessToken;
+  dynamic tokenType;
   dynamic expiresIn;
 
   UserModel({

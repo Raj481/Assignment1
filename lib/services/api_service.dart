@@ -67,8 +67,14 @@ class ApiService {
     return networkUtil.get(ApiConstants.userDelete,);
   }
 
-  Future<Response> getSelectCountry() {
-    return networkUtil.get(ApiConstants.selectCountry,);
+  Future<Response> getSelectCountry({
+    required String accessToken,
+    required String tokenType,
+  }) {
+    var headers = {
+      "Authorization" : "$tokenType $accessToken"
+    };
+    return networkUtil.get(ApiConstants.selectCountry, headers: headers );
   }
 
   Future<Response> postSelectCountry() {

@@ -24,8 +24,25 @@ class NetworkUtil {
    }
 
    ///used for calling get Request
-   Future<Response> get(String url) async {
-     Response response = await _dio.get(url, options: Options(responseType: ResponseType.json));
+   Future<Response> get(String url,{Map<String, dynamic>? headers}) async {
+     late Response response;
+     if(headers == null){
+       response = await _dio.get(
+           url,
+           options: Options(
+               responseType: ResponseType.json,
+           )
+       );
+     } else {
+       response = await _dio.get(
+           url,
+           options: Options(
+             responseType: ResponseType.json,
+             headers: headers
+           )
+       );
+     }
+
      return response;
    }
 
