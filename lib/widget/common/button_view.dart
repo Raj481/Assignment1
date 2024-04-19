@@ -34,8 +34,8 @@ class ButtonView extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               //offset: const Offset(-2, 2),
-              color: ColorRes.white.withOpacity(.05),
-              spreadRadius: 1,
+              color: ColorRes.white.withOpacity(.08),
+              spreadRadius: 5,
               blurRadius: 5
             )
           ]

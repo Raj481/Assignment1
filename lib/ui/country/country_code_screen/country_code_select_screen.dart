@@ -7,7 +7,7 @@ import 'package:appassesment/utils/image_res.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/common/divider_gradient_view.dart';
 import 'package:appassesment/widget/common/search_view.dart';
-import 'package:appassesment/widget/country_rectangle_item_view.dart';
+import 'package:appassesment/ui/country/country_code_screen/widget/country_rectangle_item_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -92,7 +92,14 @@ class PhoneNumberScreenController extends GetxController {
       }
       setLoading(false);
     } on DioException catch (e) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      if(e.response != null){
+        GeneralResponse response = GeneralResponse.fromJson(e.response!.data!);
+        // CustomUiUtils.showSnackbar(response.data);
+        setError(response.data);
+      }
+      else {
+        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      }
       setLoading(false);
     } catch (ex) {
       CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
@@ -127,7 +134,8 @@ class PhoneNumberScreenController extends GetxController {
         GeneralResponse response = GeneralResponse.fromJson(e.response!.data!);
         // CustomUiUtils.showSnackbar(response.data);
         setError(response.data);
-      } else {
+      }
+      else {
         CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);

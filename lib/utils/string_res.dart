@@ -8,6 +8,7 @@ class StringRes {
   static String get welcomeToStudyLancer => "Welcome to Study Lancer";
   static String get pleaseSelectYourRole => "Please select your role to get registered";
   static String get selectYourCountry => "Select your country";
+  static String get selectCountry => "Select Country";
   static String get enterPhoneNumber => "Enter phone number";
   static String get student => "Student";
   static String get agent => "Agent";
@@ -33,5 +34,6 @@ class StringRes {
   static String get msgPleaseEnterValidMobileNumber => "Please enter a valid mobile number";
   static String get msgPleasePleaseEnter10DigitMobileNumber => "Please enter your 10 digit mobile\nnumber to receive OTP";
   static String get msgPleaseEnterTheOtpReceived => "Please enter the OTP received to\nverify your number";
+  static String get msgPleaseSelectCountryWhere => "Please select the country where\nyou want to study";
 
 }

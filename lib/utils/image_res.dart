@@ -10,5 +10,6 @@ class ImageRes {
   static String get imgAgent => "$image/img_agent.png";
   static String get imgStudent => "$image/img_student.png";
   static String get imgTerms => "$image/img_terms.png";
+  static String get imgCountry => "$image/img_country.png";
 
 }

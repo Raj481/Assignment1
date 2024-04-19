@@ -16,7 +16,7 @@ class DividerGradientView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height ?? .3,
+      height: height ?? .9,
       margin: margin ?? EdgeInsets.symmetric(
           horizontal: Get.width * .05,
       ),

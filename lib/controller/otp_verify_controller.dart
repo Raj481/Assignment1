@@ -52,6 +52,7 @@ class OtpVerifyController extends GetxController {
 
   void onResendTap() {
     setError("");
+    if(isLoading) return;
     if((timer != null) && timer!.isActive) {
       return; 
     }
@@ -120,11 +121,13 @@ class OtpVerifyController extends GetxController {
       if(e.response != null){
         if(e.response!.statusCode == 400){
           setError(StringRes.msgOTPDoesNotMatch);
-        } if(e.response!.statusCode == 403){
+        }
+        if(e.response!.statusCode == 403){
           GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
           setError(response.data);
-        } else {
-          CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        }
+        else {
+         // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
         }
       }
       else{
