@@ -126,7 +126,8 @@ class OtpVerifyController extends GetxController {
         } else {
           CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
         }
-      } else{
+      }
+      else{
         CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);

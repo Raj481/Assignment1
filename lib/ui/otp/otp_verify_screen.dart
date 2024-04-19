@@ -78,7 +78,7 @@ class OtpVerifyScreen extends StatelessWidget {
                     builder: (_){
 
                       if(controller.errorText.trim().isEmpty){
-                        return const SizedBox.shrink();
+                        return const SizedBox(height: 25,);
                       }
 
                       return Column(
