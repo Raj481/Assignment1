@@ -34,38 +34,33 @@ class SelectCountryScreen extends StatelessWidget {
                 ),
                 itemCount: 20,
                 itemBuilder: (_, index){
-                  return Container(
-                    // height: 200,
-                    // width: 200,
-                    //color: ColorRes.bgSearchColor,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 120,
-                          width:  120,
-                          child: Image(
-                            image: AssetImage(
-                                ImageRes.imgCountry
-                            ),
+                  return Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SizedBox(
+                        height: 90,
+                        width:  90,
+                        child: Image(
+                          image: AssetImage(
+                              ImageRes.imgCountry
                           ),
                         ),
-                        const SizedBox(height: 8,),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(
-                              "Canada",
-                              style: TextStyle(
-                                  color: ColorRes.white,
-                                  fontSize: 18,
-                                  fontFamily: FontRes.regular
-                              ),
+                      ),
+                      const SizedBox(height: 8,),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Canada",
+                            style: TextStyle(
+                                color: ColorRes.white,
+                                fontSize: 18,
+                                fontFamily: FontRes.regular
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   );
                 }
             ),
