@@ -111,7 +111,7 @@ class CountryCodeSelectScreen extends StatelessWidget {
                         await controller.fetchCountries(
                           isRefresh: true
                         );
-                        return Future.value(true);
+                        return Future(()=>true);
                       },
                       child: ListView.builder(
                           physics: const BouncingScrollPhysics(),

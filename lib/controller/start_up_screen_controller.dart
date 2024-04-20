@@ -1,7 +1,4 @@
 
-import 'dart:convert';
-
-import 'package:appassesment/model/user_model.dart';
 import 'package:appassesment/services/pref_service.dart';
 import 'package:appassesment/ui/country/country_code_screen/country_code_select_screen.dart';
 import 'package:appassesment/ui/home/home_screen.dart';

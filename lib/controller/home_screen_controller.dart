@@ -7,7 +7,6 @@ import 'package:get/get.dart';
 import 'package:appassesment/model/user_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/pref_service.dart';
-import 'package:appassesment/services/response/general_response.dart';
 import 'package:appassesment/ui/startup/start_up_screen.dart';
 import 'package:appassesment/utils/const_res.dart';
 import 'package:appassesment/utils/constants.dart';
