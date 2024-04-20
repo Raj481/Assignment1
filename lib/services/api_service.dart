@@ -69,8 +69,14 @@ class ApiService {
     };
     return networkUtil.postWithHeaders(ApiConstants.userLogout, headers: headers );
   }
-  Future<Response> deleteUser() {
-    return networkUtil.get(ApiConstants.userDelete,);
+  Future<Response> deleteUser({
+    required String accessToken,
+    required String tokenType,
+  }) {
+    var headers = {
+      "Authorization" : "$tokenType $accessToken"
+    };
+    return networkUtil.postWithHeaders(ApiConstants.userDelete, headers: headers);
   }
 
   Future<Response> getSelectCountry({

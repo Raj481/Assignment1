@@ -1,7 +1,5 @@
 
-
 import 'dart:convert';
-
 import 'package:appassesment/model/user_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/pref_service.dart';
@@ -34,6 +32,12 @@ class HomeScreenController extends GetxController {
     super.onInit();
   }
 
+  @override
+  void onReady() async {
+    await getUser();
+    super.onReady();
+  }
+
   /*
   * UI event methods and action methods declare here
   * */
@@ -42,17 +46,17 @@ class HomeScreenController extends GetxController {
     update();
   }
 
-  onLogoutTap() {
-    //if(isLoading) return;
-    //Get.back();
-    CustomUi.showSnackbar(
-        "Hello Success",
-            type: ToastEnum.warning
-    );
+  onLogoutTap() async {
+    /*setLoading(true);
+    Future.delayed(const Duration(seconds: 10),(){
+      setLoading(false);
+    });*/
+    if(isLoading) return;
+    await userLogout();
   }
-  onDeleteUserTap() {
-   // if(isLoading) return;
-    //CustomUi.loader();
+  onDeleteUserTap() async {
+    if(isLoading) return;
+    await userDelete();
   }
 
   void setUser(UserModel model){
@@ -104,11 +108,60 @@ class HomeScreenController extends GetxController {
         }
       }
       else{
-        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(
+            StringRes.msgSomethingWentWrong,
+            type: ToastEnum.error);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(
+          StringRes.msgSomethingWentWrong,
+          type: ToastEnum.error);
+      print("Exception ::: $ex");
+      setLoading(false);
+    }
+  }
+  Future userDelete({bool isRefresh = false}) async {
+
+    if(!isRefresh){
+      setLoading(true);
+    }
+    try{
+      var res =  await apiService.deleteUser(
+          accessToken:  userModel!.accessToken ?? "",
+          tokenType: "Bearer"
+      );
+      if(res.statusCode == 200){
+       await prefService.clearPrefs().whenComplete((){
+         Get.offAll(() => const StartUpScreen());
+       });
+      }
+      setLoading(false);
+
+    } on DioException catch (e) {
+
+      if(e.response != null){
+        if(e.response!.statusCode == 400){
+          //setError(StringRes.msgOTPDoesNotMatch);
+        }
+        if(e.response!.statusCode == 403){
+          GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
+          // setError(response.data);
+        }
+        else {
+          // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        }
+      }
+      else{
+        CustomUi.showSnackbar(
+            StringRes.msgSomethingWentWrong,
+            type: ToastEnum.error);
+      }
+      setLoading(false);
+    } catch (ex) {
+      CustomUi.showSnackbar(
+          StringRes.msgSomethingWentWrong,
+          type: ToastEnum.error);
       setLoading(false);
     }
   }
