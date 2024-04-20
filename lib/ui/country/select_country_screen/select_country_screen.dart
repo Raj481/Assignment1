@@ -47,21 +47,26 @@ class SelectCountryScreen extends StatelessWidget {
                         children: [
 
                           if(controller.getCountries.elementAt(index).image!.trim().isNotEmpty)
-                            SizedBox(
-                              height: 90,
-                              width:  90,
-                              child: Container(
-                                foregroundDecoration: const BoxDecoration(
-                                  color: Colors.white,
-                                  backgroundBlendMode: BlendMode.saturation,
-                                ),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(25),
-                                  image: DecorationImage(
-                                    image: NetworkImage(
-                                        controller.getCountries.elementAt(index).image!
+                            GestureDetector(
+                              onTap: () => controller.onCountryITemTap(index),
+                              child: SizedBox(
+                                height: 90,
+                                width:  90,
+                                child: Container(
+                                  foregroundDecoration: controller.getCountries.elementAt(index).isSelected ?
+                                  const BoxDecoration()
+                                      : const BoxDecoration(
+                                    color: Colors.white,
+                                    backgroundBlendMode: BlendMode.saturation,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(25),
+                                    image: DecorationImage(
+                                      image: NetworkImage(
+                                          controller.getCountries.elementAt(index).image!
+                                      )
                                     )
-                                  )
+                                  ),
                                 ),
                               ),
                             ),

@@ -50,12 +50,14 @@ class Country {
   String? name;
   String? flag;
   String? image;
+  bool isSelected;
 
   Country({
     this.id,
     this.name,
     this.flag,
     this.image,
+    required this.isSelected,
   });
 
   Country copyWith({
@@ -63,12 +65,14 @@ class Country {
     String? name,
     String? flag,
     String? image,
+    bool? isSelect,
   }) =>
       Country(
         id: id ?? this.id,
         name: name ?? this.name,
         flag: flag ?? this.flag,
         image: image ?? this.image,
+        isSelected: isSelect ?? this.isSelected,
       );
 
   factory Country.fromRawJson(String str) => Country.fromJson(json.decode(str));
@@ -80,6 +84,7 @@ class Country {
     name: json["name"],
     flag: json["flag"],
     image: json["image"],
+    isSelected: json["isSelected"] ?? false,
   );
 
   Map<String, dynamic> toJson() => {
@@ -87,5 +92,6 @@ class Country {
     "name": name,
     "flag": flag,
     "image": image,
+    "isSelected": isSelected,
   };
 }

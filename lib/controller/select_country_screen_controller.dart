@@ -70,6 +70,21 @@ class  SelectCountryScreenController extends GetxController {
     update();
   }
 
+  void onCountryITemTap(int index){
+    var selectedIndex = _countries!.indexWhere((element) => element.isSelected);
+    if((selectedIndex != index) && selectedIndex != -1){
+      _countries![selectedIndex].isSelected = false;
+      _countries![index].isSelected = true;
+    } else{
+      if(_countries![index].isSelected){
+        _countries![index].isSelected = false;
+      } else{
+        _countries![index].isSelected = true;
+      }
+    }
+    update();
+  }
+
   Future getUser() async {
     var data = prefService.getString(key: ConstRes.user);
     if(data == null) return;
