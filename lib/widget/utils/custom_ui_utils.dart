@@ -47,7 +47,7 @@ class CustomUi {
           vertical: 10,
           horizontal: 15
       ),
-      padding: const EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
       duration: const Duration(seconds: 2),
       animationDuration: const Duration(seconds: 2),
     );
@@ -76,6 +76,7 @@ class CustomUi {
             vertical: 10,
             horizontal: 15
         ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         duration: const Duration(seconds: 2),
         animationDuration: const Duration(seconds: 2),
       );
@@ -105,6 +106,7 @@ class CustomUi {
             vertical: 10,
             horizontal: 15
         ),
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
         duration: const Duration(seconds: 2),
         animationDuration: const Duration(seconds: 2),
       );
