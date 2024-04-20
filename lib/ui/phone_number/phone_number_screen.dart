@@ -1,6 +1,5 @@
 
 import 'package:appassesment/controller/phone_number_screen_controller.dart';
-import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/ui/phone_number/widget/phone_number_textview.dart';
 import 'package:appassesment/ui/phone_number/widget/phone_number_top_bar.dart';
 import 'package:appassesment/utils/color_res.dart';
@@ -9,9 +8,7 @@ import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/common/button_view.dart';
 import 'package:appassesment/widget/common/divider_gradient_view.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class PhoneNumberScreen extends StatelessWidget {

@@ -3,7 +3,6 @@ import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/response/general_response.dart';
 import 'package:appassesment/ui/otp/otp_verify_screen.dart';
-import 'package:appassesment/ui/phone_number/phone_number_screen.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:dio/dio.dart';
@@ -22,11 +21,6 @@ class PhoneNumberScreenController extends GetxController {
   String get loginType => Get.arguments[0];
   bool isLoading = false;
   String errorText = "";
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   // UI event methods and action methods declare here
   void onBackTap(){
@@ -95,7 +89,11 @@ class PhoneNumberScreenController extends GetxController {
       if(e.response != null){
         GeneralResponse response = GeneralResponse.fromJson(e.response!.data!);
         // CustomUiUtils.showSnackbar(response.data);
-        setError(response.data);
+        if(response.data is List){
+          setError(response.data.first);
+        } else {
+          setError(response.data);
+        }
       }
       else {
         CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
@@ -133,7 +131,11 @@ class PhoneNumberScreenController extends GetxController {
       if(e.response != null){
         GeneralResponse response = GeneralResponse.fromJson(e.response!.data!);
         // CustomUiUtils.showSnackbar(response.data);
-        setError(response.data);
+        if(response.data is List){
+          setError(response.data.first);
+        } else {
+          setError(response.data);
+        }
       }
       else {
         CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);

@@ -35,5 +35,6 @@ class StringRes {
   static String get msgPleasePleaseEnter10DigitMobileNumber => "Please enter your 10 digit mobile\nnumber to receive OTP";
   static String get msgPleaseEnterTheOtpReceived => "Please enter the OTP received to\nverify your number";
   static String get msgPleaseSelectCountryWhere => "Please select the country where\nyou want to study";
+  static String get msgPleaseSelectCountry => "Please select a country";
 
 }

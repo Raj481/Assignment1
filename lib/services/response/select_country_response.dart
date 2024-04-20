@@ -72,7 +72,7 @@ class Country {
         name: name ?? this.name,
         flag: flag ?? this.flag,
         image: image ?? this.image,
-        isSelected: isSelect ?? this.isSelected,
+        isSelected: isSelect ?? isSelected,
       );
 
   factory Country.fromRawJson(String str) => Country.fromJson(json.decode(str));

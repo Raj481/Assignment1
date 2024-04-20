@@ -4,10 +4,7 @@ import 'package:appassesment/ui/country/select_country_screen/widget/select_coun
 import 'package:appassesment/ui/country/select_country_screen/widget/select_country_topbar_view.dart';
 import 'package:appassesment/utils/color_res.dart';
 import 'package:appassesment/utils/font_res.dart';
-import 'package:appassesment/utils/image_res.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 
 class SelectCountryScreen extends StatelessWidget {

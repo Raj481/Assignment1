@@ -27,7 +27,6 @@ class CountryListScreenController extends GetxController {
   @override
   void onReady() {
     fetchCountries();
-    print("loginType ::: $loginType");
     super.onReady();
   }
 

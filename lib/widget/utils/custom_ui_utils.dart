@@ -10,7 +10,10 @@ class CustomUiUtils {
     return CustomUiUtils._();
   }
 
-  static void showSnackbar(String message, {bool isSuccess = true}){
+  static void showSnackbar(
+      String message, {
+        String? type
+      }){
     Get.showSnackbar(
         GetSnackBar(
           backgroundColor: ColorRes.white,

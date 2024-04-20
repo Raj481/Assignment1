@@ -2,8 +2,6 @@
 import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/utils/color_res.dart';
 import 'package:appassesment/utils/font_res.dart';
-import 'package:appassesment/utils/image_res.dart';
-import 'package:appassesment/utils/string_res.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';

@@ -2,8 +2,6 @@
 
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ffi';
-
 import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/pref_service.dart';
@@ -115,7 +113,7 @@ class OtpVerifyController extends GetxController {
     }
     try{
       var res =  await apiService.verifyOtp(
-          phoneNumberWithCountryCode: "${countryModel.telCode!}${phoneNumber}",
+          phoneNumberWithCountryCode: "${countryModel.telCode!}$phoneNumber",
           otp: otpValue,
       );
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
@@ -149,7 +147,6 @@ class OtpVerifyController extends GetxController {
     } catch (ex) {
       CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
-      print("exception ::: $ex");
     }
   }
 

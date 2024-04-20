@@ -77,8 +77,22 @@ class ApiService {
     return networkUtil.get(ApiConstants.selectCountry, headers: headers );
   }
 
-  Future<Response> postSelectCountry() {
-    return networkUtil.get(ApiConstants.selectCountry,);
+  Future<Response> postSelectCountry({
+    required String accessToken,
+    required String tokenType,
+    required dynamic countryId,
+  }) {
+    var headers = {
+      "Authorization" : "$tokenType $accessToken"
+    };
+    final formData = FormData.fromMap({
+      'country_id': countryId,
+    });
+    return networkUtil.postWithHeaders(
+      ApiConstants.selectCountry,
+        headers: headers,
+        params: formData
+    );
   }
 
 

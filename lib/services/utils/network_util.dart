@@ -55,6 +55,23 @@ class NetworkUtil {
      return response;
    }
 
+   Future<Response> postWithHeaders(
+       String url,
+       {
+         Map<String, dynamic>? headers,
+         FormData? params
+       }) async {
+     Response response = await _dio.post(url,
+         data: params,
+         options: Options(
+             responseType: ResponseType.json,
+             headers: headers
+         )
+     );
+
+     return response;
+   }
+
    ///used for calling post Request
    Future<Response> delete(String url, Map<String, String> params) async {
      Response response = await _dio.delete(url,

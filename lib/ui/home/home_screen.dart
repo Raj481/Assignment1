@@ -1,4 +1,5 @@
 
+import 'package:appassesment/controller/home_screen_controller.dart';
 import 'package:appassesment/utils/color_res.dart';
 import 'package:appassesment/utils/font_res.dart';
 import 'package:appassesment/utils/string_res.dart';
@@ -11,6 +12,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    HomeScreenController controller = Get.put(HomeScreenController());
+
     return Scaffold(
       backgroundColor: ColorRes.bgDarkGrey,
       body: Column(

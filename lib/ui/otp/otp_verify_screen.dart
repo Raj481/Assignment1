@@ -7,7 +7,6 @@ import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/common/button_view.dart';
 import 'package:appassesment/widget/common/divider_gradient_view.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:otp_text_field/otp_text_field.dart';
