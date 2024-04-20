@@ -1,7 +1,12 @@
 
-
+// Import necessary packages
 import 'dart:async';
 import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
+import 'package:otp_text_field/otp_field.dart';
+
+// Import custom classes
 import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/pref_service.dart';
@@ -10,31 +15,31 @@ import 'package:appassesment/ui/country/select_country_screen/select_country_scr
 import 'package:appassesment/utils/const_res.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
-import 'package:otp_text_field/otp_field.dart';
 
 class OtpVerifyController extends GetxController {
 
-  /*--- UI ---*/
+  /*--- UI elements---*/
   OtpFieldController otpFieldController = OtpFieldController();
 
-  /*--- Services ---*/
+  /*--- Services for API and preferences ---*/
   ApiService apiService = ApiService.instance;
   PrefService prefService = PrefService.instance;
 
-  /*--- Variable and Lists ---*/
-  CountryModel get countryModel => Get.arguments[1];
-  String get loginType => Get.arguments[0];
-  String get phoneNumber => Get.arguments[2];
+  // Variables
   bool isLoading = false;
   String errorText = "";
   String otpValue = "";
 
+  // Timer for OTP resend
   Timer? timer;
   int remainingSeconds = 30;
 
+  CountryModel get countryModel => Get.arguments[1];
+  String get loginType => Get.arguments[0];
+  String get phoneNumber => Get.arguments[2];
 
+
+// Initialize preferences on controller initialization
   @override
   void onInit() async {
     await prefService.init();
@@ -42,22 +47,25 @@ class OtpVerifyController extends GetxController {
   }
 
   // UI event methods and action methods declare here
+  // Method to handle back button tap
   void onBackTap(){
     Get.back();
   }
 
+  // Method to set OTP value
   void setOtp(String value){
     otpValue = value;
     update();
   }
 
+  // Method to handle OTP verification
   void onVerifyTap() {
     if(isLoading) return;
     if(!isValidate()) return;
     verifyOtp();
-    // Get.to(() => const SelectCountryScreen());
   }
 
+  // Method to handle OTP resend
   void onResendTap() {
     setError("");
     if(isLoading) return;
@@ -67,6 +75,7 @@ class OtpVerifyController extends GetxController {
     resendOtp();
   }
 
+  // Method to start timer for OTP resend
   void startTimer(int seconds) {
     remainingSeconds = seconds;
     Duration duration = const Duration(seconds: 1);
@@ -74,6 +83,7 @@ class OtpVerifyController extends GetxController {
     update();
   }
 
+  // Method called when timer ends
   void onTimerEnd(Timer value) {
     if(remainingSeconds <= 0){
       value.cancel();
@@ -81,20 +91,22 @@ class OtpVerifyController extends GetxController {
       remainingSeconds--;
     }
     update();
-
   }
 
+  // Method to set loading state
   void setLoading(bool value){
     isLoading = value;
     update();
   }
 
+  // Method to set error message
   void setError(String value){
     errorText = value;
     update();
   }
 
 
+  // Method to validate OTP input
   bool isValidate(){
     setError("");
     if(otpValue.trim().isEmpty){
@@ -106,6 +118,7 @@ class OtpVerifyController extends GetxController {
 
 
   // Api service method create and declare here
+  // Method to verify OTP api fetch
   Future verifyOtp({bool isRefresh = false}) async {
 
     if(!isRefresh){
@@ -136,9 +149,7 @@ class OtpVerifyController extends GetxController {
           GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
           setError(response.data);
         }
-        else {
-         // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
-        }
+        else {}
       }
       else{
         CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
@@ -150,6 +161,7 @@ class OtpVerifyController extends GetxController {
     }
   }
 
+  // Method to resend OTP api fetch
   Future resendOtp({bool isRefresh = false}) async {
 
     if(isLoading) return;

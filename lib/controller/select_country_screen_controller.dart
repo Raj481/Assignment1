@@ -1,6 +1,9 @@
-
+// Import necessary packages
 import 'dart:convert';
+import 'package:dio/dio.dart';
+import 'package:get/get.dart';
 
+// Import custom classes
 import 'package:appassesment/model/user_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/pref_service.dart';
@@ -9,13 +12,10 @@ import 'package:appassesment/services/response/select_country_response.dart';
 import 'package:appassesment/utils/const_res.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 import 'package:appassesment/utils/string_res.dart';
-import 'package:dio/dio.dart';
-import 'package:get/get.dart';
 
 class  SelectCountryScreenController extends GetxController {
 
-  /*--- UI ---*/
-  /*--- Services ---*/
+  // Services for API and preferences
   ApiService apiService = ApiService.instance;
   PrefService prefService = PrefService.instance;
 
@@ -31,12 +31,14 @@ class  SelectCountryScreenController extends GetxController {
   /*
   * Override state controller methods and declare here
   * */
+  // Initialize preferences on controller initialization
   @override
   void onInit() async {
     await prefService.init();
     super.onInit();
   }
 
+  // Method called when the screen is ready
   @override
   void onReady() async {
     await getUser().whenComplete(
@@ -50,10 +52,12 @@ class  SelectCountryScreenController extends GetxController {
   /*
   * UI event methods and action methods declare here
   * */
+  // Method to handle back button tap
   void onBackTap(){
     Get.back();
   }
 
+  // Method to handle "Proceed" button tap
   void onProceedTap() async {
 
     if(selectedCountryIndex == -1){
@@ -66,21 +70,25 @@ class  SelectCountryScreenController extends GetxController {
    // Get.to(() => const HomeScreen());
   }
 
+  // Method to set loading state
   void setLoading(bool value){
     isLoading = value;
     update();
   }
 
+  // Method to set user model
   void setUser(UserModel model){
     userModel = model;
     update();
   }
 
+  // Method to set country list
   void setCountries(List<Country> value){
     _countries = value;
     update();
   }
 
+  // Method to handle country item tap
   void onCountryITemTap(int index){
     if((selectedCountryIndex != index) && selectedCountryIndex != -1){
       _countries![selectedCountryIndex].isSelected = false;
@@ -95,6 +103,7 @@ class  SelectCountryScreenController extends GetxController {
     update();
   }
 
+  // Method to fetch user details from preferences
   Future getUser() async {
     var data = prefService.getString(key: ConstRes.user);
     if(data == null) return;
@@ -104,7 +113,7 @@ class  SelectCountryScreenController extends GetxController {
   }
 
   // Api service method create and declare here
-
+// Method to fetch countries list from API
   Future getSelectCountries({bool isRefresh = false}) async {
 
     if(!isRefresh){
@@ -147,7 +156,7 @@ class  SelectCountryScreenController extends GetxController {
     }
   }
 
-
+  // Method to update selected country on the server
   Future setSelectCountry({bool isRefresh = false}) async {
 
     if(!isRefresh){

@@ -1,44 +1,49 @@
+// Import necessary packages
+import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
+// Import custom classes
 import 'package:appassesment/model/country_model.dart';
 import 'package:appassesment/services/api_service.dart';
 import 'package:appassesment/services/response/general_response.dart';
 import 'package:appassesment/ui/otp/otp_verify_screen.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 import 'package:appassesment/utils/string_res.dart';
-import 'package:dio/dio.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 
 class PhoneNumberScreenController extends GetxController {
 
-  /*--- UI ---*/
+  /*--- UI elements ---*/
   TextEditingController phoneTextController = TextEditingController();
-  /*--- Services ---*/
+  /*--- Service for API requests ---*/
   ApiService apiService = ApiService.instance;
 
   /*--- Variable and Lists ---*/
+  // Variables
   CountryModel get countryModel => Get.arguments[1];
   String get loginType => Get.arguments[0];
   bool isLoading = false;
   String errorText = "";
 
   // UI event methods and action methods declare here
+  // Method to handle back button tap
   void onBackTap(){
     Get.back();
   }
 
+  // Method to set loading state
   void setLoading(bool value){
     isLoading = value;
     update();
   }
 
+  // Method to set error message
   void setError(String value){
     errorText = value;
     update();
   }
 
-
-
+  // Method called when user taps on "Get OTP" button
   onGetOtpTap(){
     if(isLoading) return;
     if(!isValidate()) return;
@@ -52,6 +57,7 @@ class PhoneNumberScreenController extends GetxController {
   }
 
 
+  // Method to validate phone number input
   bool isValidate(){
     setError("");
 
@@ -64,6 +70,7 @@ class PhoneNumberScreenController extends GetxController {
   }
 
   // Api service method create and declare here
+  // Method to handle student login API request
   Future getStudentLogin({bool isRefresh = false}) async {
 
     if(!isRefresh){
@@ -105,6 +112,7 @@ class PhoneNumberScreenController extends GetxController {
     }
   }
 
+  // Method to handle counsellor login API request
   Future getCounsellorLogin({bool isRefresh = false}) async {
 
     if(!isRefresh){
