@@ -43,17 +43,22 @@ class PhoneNumberScreen extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  PhoneNumberTextView(
-                    model: controller.countryModel,
-                    controller: controller.phoneTextController,
-                    decoration: const BoxDecoration(),
-                    margin: const EdgeInsets.symmetric(
-                        horizontal: 15
-                    ),
-                    onTextChanged: (value){
-                      controller.setError("");
-                    },
-                  ),
+                  GetBuilder(
+                      init: controller,
+                      builder: (_){
+                        return  PhoneNumberTextView(
+                          model: controller.countryModel,
+                          controller: controller.phoneTextController,
+                          decoration: const BoxDecoration(),
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 15
+                          ),
+                          onTextChanged: (value){
+                            controller.setError("");
+                          },
+                          enabled: controller.isLoading ? false : true,
+                        );
+                      }),
                   DividerGradientView(
                     gradient: LinearGradient(
                       colors: [

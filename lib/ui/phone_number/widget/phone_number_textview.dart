@@ -10,6 +10,7 @@ import 'package:get/get.dart';
 class PhoneNumberTextView extends StatelessWidget {
 
   final CountryModel model;
+  final bool enabled;
   final TextEditingController? controller;
   final EdgeInsets? padding;
   final EdgeInsets? margin;
@@ -26,7 +27,8 @@ class PhoneNumberTextView extends StatelessWidget {
     this.inputDecoration,
     this.controller,
     this.onTextChanged,
-    required this.model
+    required this.model,
+    this.enabled = true
   });
 
   @override
@@ -77,6 +79,7 @@ class PhoneNumberTextView extends StatelessWidget {
                     fontSize: 18
                 ),
                 onChanged: onTextChanged ?? (value){},
+                enabled: enabled,
                 decoration: inputDecoration ?? InputDecoration(
                     border: InputBorder.none,
                     hintText: "9999999999" ,
@@ -91,6 +94,7 @@ class PhoneNumberTextView extends StatelessWidget {
                   FilteringTextInputFormatter.digitsOnly,
                   LengthLimitingTextInputFormatter(15)
                 ],
+                cursorColor: ColorRes.white,
               )
           )
         ],

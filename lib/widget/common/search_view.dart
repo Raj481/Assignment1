@@ -55,7 +55,8 @@ class SearchView extends StatelessWidget {
                 controller: controller ?? TextEditingController(),
                 style: TextStyle(
                     fontFamily: FontRes.regular,
-                    color: ColorRes.white
+                    color: ColorRes.white,
+                    fontSize: 14
                 ),
                 onChanged: onTextChanged ?? (value){},
                 decoration: inputDecoration ?? InputDecoration(
@@ -66,6 +67,7 @@ class SearchView extends StatelessWidget {
                     color: ColorRes.white.withOpacity(.5)
                   )
                 ),
+                cursorColor: ColorRes.white,
               )
           )
         ],
