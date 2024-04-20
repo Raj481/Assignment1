@@ -105,7 +105,7 @@ class CountryListScreenController extends GetxController {
        GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
        prepareCountryList(responseModel.data);
        setLoading(false);
-     } on DioException catch (ex) {
+     } on DioException {
        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
        setLoading(false);
      } catch (ex) {

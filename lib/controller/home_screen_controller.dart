@@ -114,7 +114,6 @@ class HomeScreenController extends GetxController {
         if(e.response!.statusCode == 400){
         }
         if(e.response!.statusCode == 403){
-          GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
         }
         else {
 
@@ -159,11 +158,8 @@ class HomeScreenController extends GetxController {
           //setError(StringRes.msgOTPDoesNotMatch);
         }
         if(e.response!.statusCode == 403){
-          GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
-          // setError(response.data);
         }
         else {
-          // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
         }
       }
       else{

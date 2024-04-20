@@ -25,7 +25,7 @@ class  SelectCountryScreenController extends GetxController {
   List<Country>? _countries = [];
   List<Country> get getCountries =>  _countries ?? [];
   int get selectedCountryIndex =>
-      _countries!.indexWhere((element) => element.isSelected) ?? -1;
+      _countries!.indexWhere((element) => element.isSelected);
 
 
   /*
@@ -136,14 +136,11 @@ class  SelectCountryScreenController extends GetxController {
 
       if(e.response != null){
         if(e.response!.statusCode == 400){
-          //setError(StringRes.msgOTPDoesNotMatch);
         }
         if(e.response!.statusCode == 403){
-          GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
-          // setError(response.data);
+
         }
         else {
-          // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
         }
       }
       else{
@@ -183,11 +180,9 @@ class  SelectCountryScreenController extends GetxController {
           //setError(StringRes.msgOTPDoesNotMatch);
         }
         if(e.response!.statusCode == 403){
-          GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
-          // setError(response.data);
+
         }
         else {
-          // CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
         }
       }
       else{
