@@ -41,7 +41,7 @@ class SelectCountryBottomView extends StatelessWidget {
                 builder: (_) {
                   if(controller.isLoading){
                     return Center(
-                      child: CustomUiUtils.loaderWidget(),
+                      child: CustomUi.loaderWidget(),
                     );
                   }
                   return Center(

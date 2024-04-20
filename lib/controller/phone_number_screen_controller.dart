@@ -77,7 +77,7 @@ class PhoneNumberScreenController extends GetxController {
       );
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
         Get.to(() => const OtpVerifyScreen(),arguments: [
           loginType,
           countryModel,
@@ -96,11 +96,11 @@ class PhoneNumberScreenController extends GetxController {
         }
       }
       else {
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }
@@ -118,7 +118,7 @@ class PhoneNumberScreenController extends GetxController {
       );
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
         Get.to(() => const OtpVerifyScreen(),arguments: [
           loginType,
           countryModel,
@@ -138,11 +138,11 @@ class PhoneNumberScreenController extends GetxController {
         }
       }
       else {
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }

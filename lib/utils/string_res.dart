@@ -18,7 +18,6 @@ class StringRes {
   static String get getOtp => "Get OTP";
   static String get search => "Search";
   static String get resendOTP => "Resend OTP";
-
   static String get resendingOTP => "Resending OTP in ";
   static String get verify => "Verify";
   static String get verifyNumber => "Verify Number";
@@ -26,7 +25,9 @@ class StringRes {
   static String get proceed => "Proceed";
   static String get consultWithUs => "Consult with us";
   static String get cantSeeTheCountryOfYourInterest => "Can’t see the country of your interest?";
-
+  static String get failed => "Failed";
+  static String get success => "Success";
+  static String get warning => "Warning";
 
   /*----- Messages Strings Utils -----*/
   static String get msgSomethingWentWrong => "Something went wrong";

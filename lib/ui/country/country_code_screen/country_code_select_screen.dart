@@ -98,7 +98,7 @@ class CountryCodeSelectScreen extends StatelessWidget {
                   if(controller.isLoading){
                     return Expanded(
                         child: Center(
-                            child: CustomUiUtils.loaderWidget()
+                            child: CustomUi.loaderWidget()
                         )
                     );
                   }

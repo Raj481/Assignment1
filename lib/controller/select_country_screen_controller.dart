@@ -28,6 +28,9 @@ class  SelectCountryScreenController extends GetxController {
       _countries!.indexWhere((element) => element.isSelected) ?? -1;
 
 
+  /*
+  * Override state controller methods and declare here
+  * */
   @override
   void onInit() async {
     await prefService.init();
@@ -44,7 +47,9 @@ class  SelectCountryScreenController extends GetxController {
   }
 
 
-  // UI event methods and action methods declare here
+  /*
+  * UI event methods and action methods declare here
+  * */
   void onBackTap(){
     Get.back();
   }
@@ -52,7 +57,7 @@ class  SelectCountryScreenController extends GetxController {
   void onProceedTap() async {
 
     if(selectedCountryIndex == -1){
-      CustomUiUtils.showSnackbar(
+      CustomUi.showSnackbar(
         StringRes.msgPleaseSelectCountry
       );
       return;
@@ -114,7 +119,7 @@ class  SelectCountryScreenController extends GetxController {
       if(res.statusCode == 200){
         SelectCountryResponse response = SelectCountryResponse.fromJson(responseModel.data);
         setCountries(response.countries ?? []);
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
       }
       setLoading(false);
 
@@ -133,11 +138,11 @@ class  SelectCountryScreenController extends GetxController {
         }
       }
       else{
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }
@@ -158,7 +163,7 @@ class  SelectCountryScreenController extends GetxController {
       if(res.statusCode == 200){
         SelectCountryResponse response = SelectCountryResponse.fromJson(responseModel.data);
         setCountries(response.countries ?? []);
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
       }
       setLoading(false);
 
@@ -177,11 +182,11 @@ class  SelectCountryScreenController extends GetxController {
         }
       }
       else{
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }

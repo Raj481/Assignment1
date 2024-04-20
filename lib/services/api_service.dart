@@ -60,8 +60,14 @@ class ApiService {
     return networkUtil.post(ApiConstants.resendOtp, formData);
   }
 
-  Future<Response> logout() {
-    return networkUtil.get(ApiConstants.userLogout,);
+  Future<Response> logout({
+    required String accessToken,
+    required String tokenType,
+  }) {
+    var headers = {
+      "Authorization" : "$tokenType $accessToken"
+    };
+    return networkUtil.postWithHeaders(ApiConstants.userLogout, headers: headers );
   }
   Future<Response> deleteUser() {
     return networkUtil.get(ApiConstants.userDelete,);
@@ -88,7 +94,7 @@ class ApiService {
     final formData = FormData.fromMap({
       'country_id': countryId,
     });
-    return networkUtil.postWithHeaders(
+    return networkUtil.postWithParamHeaders(
       ApiConstants.selectCountry,
         headers: headers,
         params: formData

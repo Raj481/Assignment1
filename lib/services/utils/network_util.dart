@@ -55,14 +55,26 @@ class NetworkUtil {
      return response;
    }
 
-   Future<Response> postWithHeaders(
-       String url,
-       {
-         Map<String, dynamic>? headers,
-         FormData? params
-       }) async {
+   Future<Response> postWithParamHeaders(
+       String url, {
+     Map<String, dynamic>? headers,
+     FormData? params
+   }) async {
      Response response = await _dio.post(url,
          data: params,
+         options: Options(
+             responseType: ResponseType.json,
+             headers: headers
+         )
+     );
+
+     return response;
+   }
+
+   Future<Response> postWithHeaders(
+       String url,
+       {Map<String, dynamic>? headers}) async {
+     Response response = await _dio.post(url,
          options: Options(
              responseType: ResponseType.json,
              headers: headers

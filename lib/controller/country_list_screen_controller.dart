@@ -85,10 +85,10 @@ class CountryListScreenController extends GetxController {
        prepareCountryList(responseModel.data);
        setLoading(false);
      } on DioException catch (ex) {
-       CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+       CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
        setLoading(false);
      } catch (ex) {
-       CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+       CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
        setLoading(false);
      }
   }

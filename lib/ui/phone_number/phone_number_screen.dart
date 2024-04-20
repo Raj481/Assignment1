@@ -84,7 +84,7 @@ class PhoneNumberScreen extends StatelessWidget {
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  CustomUiUtils.errorWidget(errorText: controller.errorText)
+                                  CustomUi.errorWidget(errorText: controller.errorText)
                                 ],
                               ),
                             )
@@ -117,7 +117,7 @@ class PhoneNumberScreen extends StatelessWidget {
                     builder: (_) {
                       if(controller.isLoading){
                         return Center(
-                          child: CustomUiUtils.loaderWidget(),
+                          child: CustomUi.loaderWidget(),
                         );
                       }
                       return Center(

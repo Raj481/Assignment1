@@ -87,7 +87,7 @@ class OtpVerifyScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              CustomUiUtils.errorWidget(
+                              CustomUi.errorWidget(
                                   errorText: controller.errorText
                               )
                             ],
@@ -182,7 +182,7 @@ class OtpVerifyScreen extends StatelessWidget {
                     builder: (_) {
                       if(controller.isLoading){
                         return Center(
-                          child: CustomUiUtils.loaderWidget(),
+                          child: CustomUi.loaderWidget(),
                         );
                       }
                       return Center(

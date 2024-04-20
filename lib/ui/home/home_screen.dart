@@ -39,6 +39,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ButtonView(
+                onTap: controller.onLogoutTap,
                 constraints: BoxConstraints(
                   minWidth: Get.width * .25,
                   minHeight: 50
@@ -65,6 +66,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ButtonView(
+                onTap: controller.onDeleteUserTap,
                 constraints: BoxConstraints(
                     minWidth: Get.width * .25,
                     minHeight: 50

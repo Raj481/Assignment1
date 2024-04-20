@@ -118,7 +118,7 @@ class OtpVerifyController extends GetxController {
       );
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
         var userMap = jsonEncode(responseModel.data);
         await prefService.saveString(key: ConstRes.user, value: userMap);
         await prefService.saveBool(key: ConstRes.isLogin, value: true);
@@ -141,11 +141,11 @@ class OtpVerifyController extends GetxController {
         }
       }
       else{
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }
@@ -163,7 +163,7 @@ class OtpVerifyController extends GetxController {
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
         startTimer(30);
-        CustomUiUtils.showSnackbar(responseModel.message?? "");
+        CustomUi.showSnackbar(responseModel.message?? "");
       }
       setLoading(false);
 
@@ -173,15 +173,15 @@ class OtpVerifyController extends GetxController {
           GeneralResponse response = GeneralResponse.fromJson(e.response!.data);
           setError(response.data);
         } else {
-          CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+          CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
         }
       }
       else{
-        CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+        CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       }
       setLoading(false);
     } catch (ex) {
-      CustomUiUtils.showSnackbar(StringRes.msgSomethingWentWrong);
+      CustomUi.showSnackbar(StringRes.msgSomethingWentWrong);
       setLoading(false);
     }
   }
