@@ -113,7 +113,7 @@ class  SelectCountryScreenController extends GetxController {
   }
 
   // Api service method create and declare here
-// Method to fetch countries list from API
+  // Method to fetch countries list from API
   Future getSelectCountries({bool isRefresh = false}) async {
 
     if(!isRefresh){

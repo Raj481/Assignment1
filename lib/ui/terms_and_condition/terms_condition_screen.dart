@@ -4,13 +4,19 @@ import 'package:appassesment/utils/font_res.dart';
 import 'package:appassesment/utils/image_res.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
+
+import '../../controller/terms_condition_screen_controller.dart';
+import '../../utils/constants.dart';
 
 class TermsConditionScreen extends StatelessWidget {
   const TermsConditionScreen({super.key});
-
   @override
   Widget build(BuildContext context) {
+    TermsConditionScreenController controller
+    = Get.put(TermsConditionScreenController());
+
     return Scaffold(
       backgroundColor: ColorRes.bgDarkGrey,
       body: Container(
@@ -59,7 +65,24 @@ class TermsConditionScreen extends StatelessWidget {
                   ],
                 )
               ],
-            )
+            ),
+            GetBuilder(
+               init: controller,
+               builder: (_){
+
+                 if(controller.responseData == null) {
+                  // return const SizedBox.shrink();
+                 }
+
+                 return  Flexible(
+                   child: SingleChildScrollView(
+                     child: Html(
+                       data: prepareHtml(termsData),
+                     ),
+                   ),
+                 );
+               }
+           )
           ],
         ),
       )

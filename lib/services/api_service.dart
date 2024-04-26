@@ -20,8 +20,8 @@ class ApiService {
     return networkUtil.get(ApiConstants.countries);
   }
 
-  Future<Response> getTermsCondition() {
-    return networkUtil.get(ApiConstants.termsConditions);
+  Future<Response> getTermsCondition() async {
+    return await networkUtil.get(ApiConstants.termsConditions);
   }
 
   Future<Response> studentLogin({required String countryCode, required String phoneNumber}) {
