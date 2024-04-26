@@ -3,6 +3,7 @@ import 'package:appassesment/utils/color_res.dart';
 import 'package:appassesment/utils/font_res.dart';
 import 'package:appassesment/utils/image_res.dart';
 import 'package:appassesment/utils/string_res.dart';
+import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:get/get.dart';
@@ -70,14 +71,25 @@ class TermsConditionScreen extends StatelessWidget {
                init: controller,
                builder: (_){
 
+                 if(controller.isLoading) {
+                   return Expanded(
+                     child: Column(
+                       mainAxisAlignment: MainAxisAlignment.center,
+                       children: [
+                         CustomUi.loaderWidget(),
+                       ],
+                     ),
+                   );
+                 }
+
                  if(controller.responseData == null) {
-                  // return const SizedBox.shrink();
+                   return const SizedBox.shrink();
                  }
 
                  return  Flexible(
                    child: SingleChildScrollView(
                      child: Html(
-                       data: prepareHtml(termsData),
+                       data: prepareHtml(controller.responseData["content"]),
                      ),
                    ),
                  );

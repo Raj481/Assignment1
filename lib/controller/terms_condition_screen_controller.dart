@@ -55,7 +55,7 @@ class TermsConditionScreenController extends GetxController {
          var res =  await apiService.getTermsCondition();
          GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
          if(res.statusCode == 200){
-            //setResponseData(responseModel.data);
+            setResponseData(responseModel.data);
          }
          setLoading(false);
 
