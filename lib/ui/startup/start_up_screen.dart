@@ -128,7 +128,7 @@ class StartUpScreen extends StatelessWidget {
                     ],
                   ),
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 25,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -158,6 +158,7 @@ class StartUpScreen extends StatelessWidget {
                       )
                     ],
                   ),
+                  const SizedBox(height: 25,),
                 ],
               ),
             )
