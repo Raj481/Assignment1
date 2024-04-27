@@ -3,7 +3,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'package:dio/dio.dart';
+import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
+import 'package:otp_autofill/otp_autofill.dart';
 import 'package:otp_text_field/otp_field.dart';
 
 // Import custom classes
@@ -16,10 +18,14 @@ import 'package:appassesment/utils/const_res.dart';
 import 'package:appassesment/utils/string_res.dart';
 import 'package:appassesment/widget/utils/custom_ui_utils.dart';
 
+import '../ui/otp/widget/sample_strategy.dart';
+
 class OtpVerifyController extends GetxController {
 
   /*--- UI elements---*/
   OtpFieldController otpFieldController = OtpFieldController();
+  late OTPTextEditController controller;
+  late OTPInteractor _otpInteractor;
 
   /*--- Services for API and preferences ---*/
   ApiService apiService = ApiService.instance;
@@ -44,6 +50,18 @@ class OtpVerifyController extends GetxController {
   void onInit() async {
     await prefService.init();
     super.onInit();
+  }
+
+  @override
+  void onReady() {
+    startOtpListener();
+    super.onReady();
+  }
+
+  @override
+  void onClose() {
+    controller.stopListen();
+    super.onClose();
   }
 
   // UI event methods and action methods declare here
@@ -116,6 +134,40 @@ class OtpVerifyController extends GetxController {
     return true;
   }
 
+  // set otp listener
+  void startOtpListener() {
+    _initInteractor();
+    controller = OTPTextEditController(
+      codeLength: 4,
+      //ignore: avoid_print
+      onCodeReceive: (code) {
+        print('Your StudyLancer verification code is: $code');
+        var data = code.length;
+        print('$data');
+        var list = code.split("").map((e) => e.toString()).toList();
+        otpFieldController.set(list);
+        verifyOtp();
+      },
+      otpInteractor: _otpInteractor,
+    )
+      ..startListenUserConsent((code) {
+        final exp = RegExp(r'(\d{4})');
+        print("Otp printed ::: $code");
+        return exp.stringMatch(code ?? '') ?? '';
+      },
+    );
+  }
+
+  Future<void> _initInteractor() async {
+    _otpInteractor = OTPInteractor();
+
+    // You can receive your app signature by using this method.
+    final appSignature = await _otpInteractor.getAppSignature();
+
+    if (kDebugMode) {
+      print('Your app signature: $appSignature');
+    }
+  }
 
   // Api service method create and declare here
   // Method to verify OTP api fetch
@@ -176,6 +228,7 @@ class OtpVerifyController extends GetxController {
       if(res.statusCode == 200){
         startTimer(30);
         CustomUi.showSnackbar(responseModel.message?? "");
+        startOtpListener();
       }
       setLoading(false);
 

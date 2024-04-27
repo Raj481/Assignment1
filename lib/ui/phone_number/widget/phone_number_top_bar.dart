@@ -22,9 +22,9 @@ class PhoneNumberTopBar extends StatelessWidget {
         Row(
           children: [
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   left: 18,
-                  top: Get.statusBarHeight
+                  top: 55, //Get.statusBarHeight
               ),
               child: GestureDetector(
                 onTap: () => onBackTap(),

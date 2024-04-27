@@ -37,9 +37,9 @@ class CountryCodeSelectScreen extends StatelessWidget {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           left: 18,
-                          top: Get.statusBarHeight
+                          top: 60
                       ),
                       child: GestureDetector(
                         onTap: controller.onBackTap,
