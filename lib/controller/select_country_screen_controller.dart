@@ -1,5 +1,6 @@
 // Import necessary packages
 import 'dart:convert';
+import 'package:appassesment/ui/home/home_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:get/get.dart';
 
@@ -166,10 +167,8 @@ class  SelectCountryScreenController extends GetxController {
         countryId: getCountries.elementAt(selectedCountryIndex).id
       );
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
-      if(res.statusCode == 200){
-        SelectCountryResponse response = SelectCountryResponse.fromJson(responseModel.data);
-        setCountries(response.countries ?? []);
-        CustomUi.showSnackbar(responseModel.message?? "");
+      if(res.statusCode == 200) {
+        Get.offAll(() => const HomeScreen());
       }
       setLoading(false);
 
