@@ -17,6 +17,7 @@ class CustomUi {
       { ToastEnum type = ToastEnum.warning } ){
 
     GetSnackBar snackBar = GetSnackBar(
+      snackPosition: SnackPosition.TOP,
       backgroundColor: ColorRes.black.withOpacity(.16),
       boxShadows: [
         BoxShadow(
@@ -54,6 +55,7 @@ class CustomUi {
 
     if(type == ToastEnum.success){
       snackBar = GetSnackBar(
+        snackPosition: SnackPosition.TOP,
         backgroundColor: ColorRes.bgDarkGrey,
         titleText: Text(
           StringRes.success.toUpperCase(),
@@ -84,6 +86,7 @@ class CustomUi {
 
     if(type == ToastEnum.error){
       snackBar = GetSnackBar(
+        snackPosition: SnackPosition.TOP,
         backgroundColor: ColorRes.bgDarkGrey,
         titleText: Text(
           StringRes.failed.toUpperCase(),

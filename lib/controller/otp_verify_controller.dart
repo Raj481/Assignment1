@@ -2,6 +2,7 @@
 // Import necessary packages
 import 'dart:async';
 import 'dart:convert';
+import 'package:appassesment/ui/home/home_screen.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get/get.dart';
@@ -184,10 +185,18 @@ class OtpVerifyController extends GetxController {
       GeneralResponse responseModel = GeneralResponse.fromJson(res.data);
       if(res.statusCode == 200){
         CustomUi.showSnackbar(responseModel.message?? "");
+
         var userMap = jsonEncode(responseModel.data);
         await prefService.saveString(key: ConstRes.user, value: userMap);
         await prefService.saveBool(key: ConstRes.isLogin, value: true);
-        Get.to(() => const SelectCountryScreen());
+
+        if(responseModel.data["profile_status"] == "none"){
+          Get.to(() => const SelectCountryScreen());
+        } else {
+          Get.to(() => const HomeScreen());
+        }
+
+
       }
       setLoading(false);
 
